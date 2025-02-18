@@ -8,12 +8,13 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const MAX_ITEMS = 5;
-  const MIN_ITEMS = 0;
+  const MIN_ITEMS = 1;
 
   function addToCart(item) {
     const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
     if (itemExists >= 0) {
       // existe en el carrito
+      if (cart[itemExists].quantity >= MAX_ITEMS) return;
       const updatedCart = [...cart];
       updatedCart[itemExists].quantity++;
 
